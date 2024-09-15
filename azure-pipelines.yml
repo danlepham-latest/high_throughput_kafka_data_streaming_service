@@ -1,0 +1,16 @@
+resources:
+  repositories:
+    - repository: danlepham_pipelines
+      type: git
+      name: danlepham/release/devops-cicd
+
+trigger:
+- master
+- releases/*
+
+variables:
+- name: dockerImageName
+  value: danlepham/open-source/services/release/high_throughput_kafka_data-streaming_service
+
+jobs:
+  - template: pipeline/templates/build-java-app-and-push-to-docker-repo.yml@danlepham_pipelines
